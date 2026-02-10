@@ -34,11 +34,10 @@ function App() {
       <Header pageActuelle={page} setPage={setPage} />
 
       <main className="fade-in">
-        {/* ACCUEIL */}
+        {/* --- ACCUEIL --- */}
         {page === "accueil" && (
           <section className="hero">
             <div className="profile-container">
-              {/* CORRECTION : On retire /public/ pour pointer à la racine */}
               <img
                 src="/pdp.webp"
                 alt="Eloise Robert"
@@ -55,7 +54,6 @@ function App() {
               <button className="btn-p" onClick={() => setPage("projets")}>
                 Mes Projets
               </button>
-              {/* CORRECTION : On retire /public/ ici aussi */}
               <a href="/cv-eloise.pdf" download className="btn-cv">
                 Télécharger CV (.pdf)
               </a>
@@ -63,7 +61,7 @@ function App() {
           </section>
         )}
 
-        {/* À PROPOS */}
+        {/* --- À PROPOS --- */}
         {page === "apropos" && (
           <section>
             <h2 style={{ margin: "20px 0" }}>À propos de moi</h2>
@@ -129,7 +127,7 @@ function App() {
           </section>
         )}
 
-        {/* RÉALISATIONS */}
+        {/* --- RÉALISATIONS --- */}
         {page === "projets" && (
           <section>
             <h2 style={{ margin: "20px 0" }}>Mes Réalisations</h2>
@@ -141,7 +139,7 @@ function App() {
           </section>
         )}
 
-        {/* CONTACT */}
+        {/* --- CONTACT --- */}
         {page === "contact" && (
           <section className="contact-wrapper">
             <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
