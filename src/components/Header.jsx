@@ -7,20 +7,19 @@ function Header({ pageActuelle, setPage }) {
   ];
 
   return (
-    <header style={headerStyle}>
-      <div style={logoStyle}>Eloise Robert</div>
+    <header className="main-header">
+      <div className="logo" onClick={() => setPage("accueil")}>
+        Eloise Robert
+      </div>
       <nav>
-        <ul style={ulStyle}>
+        <ul className="nav-list">
           {menuItems.map((item) => (
             <li
               key={item.id}
               onClick={() => setPage(item.id)}
-              style={{
-                ...liStyle,
-                color: pageActuelle === item.id ? "#646cff" : "#333",
-                borderBottom:
-                  pageActuelle === item.id ? "2px solid #646cff" : "none",
-              }}
+              className={
+                pageActuelle === item.id ? "nav-item active" : "nav-item"
+              }
             >
               {item.label}
             </li>
@@ -30,35 +29,5 @@ function Header({ pageActuelle, setPage }) {
     </header>
   );
 }
-
-const headerStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  padding: "20px 0",
-  marginBottom: "40px",
-  borderBottom: "1px solid #eee",
-};
-
-const logoStyle = {
-  fontSize: "1.5rem",
-  fontWeight: "bold",
-  color: "#646cff",
-};
-
-const ulStyle = {
-  display: "flex",
-  gap: "20px",
-  listStyle: "none",
-  margin: 0,
-  padding: 0,
-};
-
-const liStyle = {
-  cursor: "pointer",
-  fontWeight: "500",
-  transition: "0.3s",
-  paddingBottom: "5px",
-};
 
 export default Header;
