@@ -16,7 +16,6 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // L'URL sur laquelle on s'était mis d'accord
     const response = await fetch("https://formspree.io/f/xpqjwbbb", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -35,39 +34,37 @@ function App() {
       <Header pageActuelle={page} setPage={setPage} />
 
       <main className="fade-in">
+        {/* ACCUEIL */}
         {page === "accueil" && (
           <section className="hero">
-            <div className="profile-avatar-container">
-              {/* On tente de charger l'image, sinon on affiche ER */}
+            <div className="profile-container">
               <img
-                src="/src/assets/pdp.webp"
+                src="/public/pdp.webp"
                 alt="Eloise Robert"
                 onError={(e) => {
-                  e.target.style.display = "none"; // Cache l'image si elle bug
-                  e.target.parentNode.innerText = "ER"; // Affiche les initiales à la place
+                  e.target.style.display = "none";
+                  e.target.parentNode.innerText = "ER";
                 }}
               />
             </div>
             <h1>Eloise Robert</h1>
-            <h2 className="text-purple" style={{ color: "#646cff" }}>
-              Développeuse Web Junior
-            </h2>
-            <p style={{ marginTop: "10px" }}>
-              19 ans • Blois • La Fabrique du Numérique
-            </p>
+            <h2 style={{ color: "#646cff" }}>Développeuse Web Junior</h2>
+            <p>19 ans • Blois • La Fabrique du Numérique du 41</p>
             <div className="hero-btns">
               <button className="btn-p" onClick={() => setPage("projets")}>
                 Mes Projets
               </button>
-              <button className="btn-s" onClick={() => setPage("contact")}>
-                Me Contacter
-              </button>
+              <a href="/public/cv-eloise.pdf" download className="btn-cv">
+                Télécharger CV (.pdf)
+              </a>
             </div>
           </section>
         )}
+
+        {/* À PROPOS */}
         {page === "apropos" && (
           <section>
-            <h2 className="title-section">À propos de moi</h2>
+            <h2 style={{ margin: "20px 0" }}>À propos de moi</h2>
             <div className="grid-responsive">
               <div className="card">
                 <h3>🛠️ Hard Skills</h3>
@@ -105,7 +102,6 @@ function App() {
                   "Postman",
                   "XAMPP",
                   "Looping",
-                  "Canva",
                   "Local",
                 ].map((s) => (
                   <span key={s} className="skill-tag">
@@ -114,24 +110,26 @@ function App() {
                 ))}
               </div>
             </div>
-            <div className="card parcours-card">
+            <div className="card" style={{ marginTop: "30px" }}>
               <h3>🎓 Mon Parcours</h3>
               <p>
-                <strong>2025 - Présent</strong> : La Fabrique du Numérique
+                <strong>2025 - Présent</strong> : La Fabrique du Numérique du 41
                 (Blois)
               </p>
               <p>
                 <strong>2025</strong> : McDo, Marie Blachère, Colissimo
               </p>
               <p>
-                <strong>2021-2023</strong> : Bac Pro MRC (CNED) & Stages Josnes
+                <strong>2021-2023</strong> : Bac Pro MRC (CNED)
               </p>
             </div>
           </section>
         )}
+
+        {/* RÉALISATIONS */}
         {page === "projets" && (
           <section>
-            <h2 className="title-section">Mes Réalisations</h2>
+            <h2 style={{ margin: "20px 0" }}>Mes Réalisations</h2>
             <div className="grid-responsive">
               {listeProjets.map((p) => (
                 <ProjectCard key={p.id} projet={p} />
@@ -139,11 +137,20 @@ function App() {
             </div>
           </section>
         )}
+
+        {/* CONTACT */}
         {page === "contact" && (
           <section className="contact-wrapper">
-            <h2 className="title-section center">Me contacter</h2>
+            <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
+              Me contacter
+            </h2>
             {formEnvoye ? (
-              <div className="success-msg">✅ Message envoyé avec succès !</div>
+              <div
+                className="card"
+                style={{ textAlign: "center", color: "green" }}
+              >
+                ✅ Message envoyé !
+              </div>
             ) : (
               <form className="contact-form" onSubmit={handleSubmit}>
                 <input
@@ -168,9 +175,9 @@ function App() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                ></textarea>
+                />
                 <button type="submit" className="btn-p">
-                  Envoyer le message
+                  Envoyer
                 </button>
               </form>
             )}
@@ -178,7 +185,14 @@ function App() {
         )}
       </main>
 
-      <footer className="footer-site">
+      <footer
+        style={{
+          textAlign: "center",
+          padding: "40px 0",
+          borderTop: "1px solid #eee",
+          marginTop: "40px",
+        }}
+      >
         <p>© 2026 - Eloise Robert - Blois (41)</p>
       </footer>
     </div>
