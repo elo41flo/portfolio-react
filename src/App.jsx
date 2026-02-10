@@ -39,7 +39,7 @@ function App() {
           <section className="hero">
             <div className="profile-container">
               <img
-                src="/public/pdp.webp"
+                src="/pdp.webp"
                 alt="Eloise Robert"
                 onError={(e) => {
                   e.target.style.display = "none";
