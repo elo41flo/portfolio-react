@@ -38,6 +38,7 @@ function App() {
         {page === "accueil" && (
           <section className="hero">
             <div className="profile-container">
+              {/* CORRECTION : On retire /public/ pour pointer à la racine */}
               <img
                 src="/pdp.webp"
                 alt="Eloise Robert"
@@ -54,7 +55,8 @@ function App() {
               <button className="btn-p" onClick={() => setPage("projets")}>
                 Mes Projets
               </button>
-              <a href="/public/cv-eloise.pdf" download className="btn-cv">
+              {/* CORRECTION : On retire /public/ ici aussi */}
+              <a href="/cv-eloise.pdf" download className="btn-cv">
                 Télécharger CV (.pdf)
               </a>
             </div>
@@ -103,6 +105,7 @@ function App() {
                   "XAMPP",
                   "Looping",
                   "Local",
+                  "Canva",
                 ].map((s) => (
                   <span key={s} className="skill-tag">
                     {s}
@@ -147,7 +150,11 @@ function App() {
             {formEnvoye ? (
               <div
                 className="card"
-                style={{ textAlign: "center", color: "green" }}
+                style={{
+                  textAlign: "center",
+                  color: "green",
+                  borderTopColor: "green",
+                }}
               >
                 ✅ Message envoyé !
               </div>
